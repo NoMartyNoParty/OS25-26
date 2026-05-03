@@ -1,0 +1,12 @@
+#!/bin/bash
+
+read -p "Enter 1st number: " first;
+read -p "Enter 2nd number: " second;
+
+if [ $first -gt $second ]; then
+	result=$(($first - $second));
+	echo "$first - $second = $result";
+else
+	result=$(($second - $first));
+	echo "$second - $first = $result";
+fi

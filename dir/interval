@@ -1,0 +1,11 @@
+#!/bin/bash
+
+read -p "Enter 1st number: " first;
+read -p "Enter 2nd number: " second;
+
+i=$first;
+
+while [ $i -le $second ]; do
+	echo "$i ";
+	i=$(($i + 1));
+done

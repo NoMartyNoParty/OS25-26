@@ -1,0 +1,12 @@
+#!/bin/bash
+
+ps -e -o pid,times,tty | while read pid time tty; do
+
+    	if [[ "$pid" == "PID" ]]; then 
+		continue;
+	fi
+    	if [ "$time" -gt 1 ] && [ "$tty" != "?" ]; then
+        	echo "Изпращане на сигнал за спиране на PID: $pid (Време: $time сек, TTY: $tty)"
+        kill -15 "$pid" 2>/dev/null
+    fi
+done

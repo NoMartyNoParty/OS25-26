@@ -1,0 +1,14 @@
+#!/bin/bash
+
+read -p "Enter directory's name: " dir;
+
+if [ -d "$dir" ];then
+
+find "$dir" -type f -name "*.c" | while read file; do
+		if gcc "$file" -o "${file%.c}.exe"; then
+		echo "The file '$file' has been compiled successfully!";
+	else echo "Something went wrong.Exiting...";
+		fi
+done
+else echo "No directories found. Exiting...";
+fi

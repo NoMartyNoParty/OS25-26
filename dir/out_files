@@ -1,0 +1,24 @@
+#!/bin/bash
+
+read -p "Enter 1st directory: " first;
+read -p "Enter 2nd directory: " second; 
+
+if [ -d "$first" -a -d "$second" ]; then 
+	
+	firstcounter=$(find "$first" -type f -name "*.out" | wc -l);
+	
+	secondcounter=$(find "$second" -type f -name "*.out" | wc -l);
+	
+	if [ $firstcounter -gt $secondcounter ]; then
+		new_dir="outputfiles";
+		mkdir -p "$new_dir";
+		echo " Subdirectory $new_dir is created successfully!";
+		find "$first" -type f -readable -writable | while read file; do
+			mv "$file" "$new_dir/";
+		done
+	else 
+		echo "Error! Exitting...";
+	fi
+else 
+	echo "Error! Exitting...";
+fi

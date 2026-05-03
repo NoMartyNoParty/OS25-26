@@ -1,0 +1,11 @@
+#!/bin/bash
+
+read -p "Enter a user: " user;
+
+for users in "$user"; do
+        if grep -q "^$user:" /etc/passwd; then
+        	ps -u "$user";
+        else 
+		echo "There is no such user $user or there are not any actions taken by $user";
+	fi
+done

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+read -p "Enter message: " message;
+
+while true; do
+	read -p "Enter activer user's username: " user;
+	if [ "$user" = "exit" ]; then
+		echo "Exiting...";
+		break;
+	else 
+		if who | grep -wq "$user"; then
+			echo "$message" | write "$user"
+		echo "Message sent to '$user'";
+		else
+			echo "User '$user' is not logged in.";
+		fi
+	fi
+done	

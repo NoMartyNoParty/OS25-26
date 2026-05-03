@@ -1,0 +1,17 @@
+#!/bin/bash
+
+stopcommand="exit";
+
+read -p "Въведете низ: " string;
+
+echo "Въведете имена на файлове:";
+
+while true; do
+	read -p "Current: " files;
+	if [ "$files" = "exit" ]; then
+		echo "Exiting...";
+		break;
+	else
+		grep -w "$string" "$files" | wc -l;
+	fi
+done

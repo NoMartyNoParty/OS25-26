@@ -1,0 +1,24 @@
+#!/bin/bash
+
+read -p "Enter directory's name" dir;
+
+target="$HOME/$dir";
+curr=$(pwd);
+
+counterall=$(find "$curr" -type f | wc -l);
+counter=$(find "$curr" -type f -readable | wc -l);
+result=$(($counterall - $counter));
+
+if [ -d "$target" ]; then
+	find "$curr" -type f -readable | while read file; do
+		cp "$file" "$target/";
+	done
+	echo "The files have been copied successfully. The number of the other files is $result";
+else 
+	mkdir "$target";
+	echo "Subdirectory $target was created successfully!";
+	find "$curr" -type f -readable | while read file; do
+		cp "$file" "$target/";
+	done
+	echo "The files have been copied successfully. Their number is $result";
+fi

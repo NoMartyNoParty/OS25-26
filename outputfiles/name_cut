@@ -1,0 +1,11 @@
+#!/bin/bash
+
+read -p "Enter directory's name: " dir;
+
+if [ -d "$dir"];then
+
+find "$dir" -type f -name "*.c" | while read file; do
+		gcc "-file" -o "{$file%.c}.exe";
+		echo "The file '$file' has been compiled successfully!";
+done
+fi

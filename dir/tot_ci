@@ -1,0 +1,23 @@
+#!/bin/bash
+
+read -p "Enter 1st directory: " first;
+read -p "Enter 2nd directory: " second;
+
+if [ -d "$first" -a -d "$second" ]; then
+
+        firstcounter=$(find "$first" -type f -name "*.c" | wc -l);
+
+        secondcounter=$(find "$second" -type f -name "*.c" | wc -l);
+
+        if [ $(($firstcounter + $secondcounter)) -gt 20 ]; then
+                new_file="Cfile";
+		find "$first" -type f -name "*.c" > $new_file;
+	        find "$second" -type f -name "*.c" >> $new_file;
+		chmod 444 "$new_file";
+                echo "File $new_file is created successfully!";
+     	else
+                echo "Total number of these files $(($firstcounter + $secondcounter)) is less than 20!. Exitting...";
+        fi
+else
+        echo"Error! Exitting...";
+fi
