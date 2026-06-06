@@ -1,0 +1,45 @@
+#!/bin/bash
+
+if [ $# -lt 3 ]; then
+	echo "Not enough parameters"
+	exit 1;
+fi
+
+num=$1;
+dir=$2;
+users=$3;
+
+if [ ! -d "$dir" ]; then 
+	echo "The second parameter is not a directory"
+	exit 1;
+fi
+
+counter=0;
+
+read -p "Enter a message" mesg;
+
+tmp_file="upr10_results.tmp" > "$tmp_file"
+
+for username in "$@"; do
+    if who | grep -q "^$username "; then
+        
+        user_subdir="$dir/$username"
+        
+        if [ -d "$user_subdir" ]; then
+            count=$(find "$user_subdir" -maxdepth 1 -type f | wc -l)
+            
+            if [ "$count" -gt "$num" ]; then
+                echo "$mesg" | write "$username" 2>/dev/null
+            else
+                echo "User: $username, Files: $count" >> "$tmp_file"
+            fi
+        fi
+    fi
+done
+
+if [ -s "$tmp_file" ]; then
+    sort "$tmp_file" > "final_results.txt"
+    echo "Results saved in final_results.txt"
+fi
+
+rm "$tmp_file"

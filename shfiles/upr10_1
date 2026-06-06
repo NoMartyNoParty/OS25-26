@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+dir=$1;
+
+if [ ! -d "$dir" ]; then
+	echo "The directory doesn't exist"
+	exit 1;
+fi
+
+read -p "Enter name of existing file: " file;
+
+head -2 "$file" > tempfile
+
+for files in "$dir"/*; do
+	if [ -f "$files" ]; then
+		(cat tempfile; tail -n +3 "$files") > temp1 && mv temp1	"$files";
+
+	fi
+done
+
+rm tempfile

@@ -1,6 +1,2 @@
-#include<stdio.h>
+#!/bin/bash
 
-int main(){
-	printf("Hello second file\n");
-	return 0;
-}

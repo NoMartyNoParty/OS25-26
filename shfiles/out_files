@@ -1,9 +1,5 @@
 #!/bin/bash
 
-read -p "Enter 1st directory: " first;
-read -p "Enter 2nd directory: " second; 
-
-if [ -d "$first" -a -d "$second" ]; then 
 	
 	firstcounter=$(find "$first" -type f -name "*.out" | wc -l);
 	

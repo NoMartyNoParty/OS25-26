@@ -1,9 +1,5 @@
 #!/bin/bash
 
-read -p "Enter message: " message;
-
-while true; do
-	read -p "Enter activer user's username: " user;
 	if [ "$user" = "exit" ]; then
 		echo "Exiting...";
 		break;

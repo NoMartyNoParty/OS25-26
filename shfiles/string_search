@@ -1,9 +1,5 @@
 #!/bin/bash
 
-stopcommand="exit";
-
-read -p "Въведете низ: " string;
-
 echo "Въведете имена на файлове:";
 
 while true; do

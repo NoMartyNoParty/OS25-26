@@ -1,9 +1,5 @@
-#include<stdio.h>
+#!/bin/bash
 
-int main (){
-	printf("Hello\n");
-	return 0;
-}
 
 #include<stdio.h>
 
